@@ -1,11 +1,17 @@
-export function isBoolean(value: Object) {
-  return value.toString() === '[Function: Boolean]'
+import { PrimitiveConstructor } from './types'
+
+export function isBoolean(value: PrimitiveConstructor) {
+  return value === Boolean
 }
 
 export function isNumber(value: Object) {
-  return value.toString() === '[Function: Number]'
+  return value === Number
 }
 
 export function isString(value: Object) {
-  return value.toString() === '[Function: String]'
+  return value === String
+}
+
+export function isObject(value: Object) {
+  return typeof value === 'object'
 }

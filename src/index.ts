@@ -1,17 +1,30 @@
-import { DefaultOption } from './default'
-import { hasOwn } from './shared'
+import { isObject } from './is'
+import { hasOwn, primitiveDefaultValue } from './shared'
+import type {
+  ArgsReturnType,
+  ArgsType,
+  ObjectType,
+  Options,
+  PrimitiveConstructor,
+  PrimitiveValue,
+} from './types'
 
-type OptionType = BooleanConstructor | StringConstructor | NumberConstructor
-
-type Options = {
-  [key: string]: OptionType
+function processDefaultValue(
+  Options: Options,
+  optionName: string
+): PrimitiveValue {
+  const optionValue = Options[optionName]
+  if (isObject(optionValue)) {
+    if (!(optionValue as ObjectType).default) {
+      return primitiveDefaultValue((optionValue as ObjectType).type)
+    } else {
+      return (optionValue as ObjectType).default
+    }
+  } else {
+    return primitiveDefaultValue(<PrimitiveConstructor>Options[optionName])
+  }
 }
-type ArgsType = (number | string | boolean)[]
 
-type ArgsReturnType = {
-  option: string
-  value: boolean | string | number
-}
 function processArgs(options: Options, args: ArgsType): ArgsReturnType[] {
   const k_v_args = []
   for (let i = 0; i < args.length; i++) {
@@ -29,7 +42,7 @@ function processArgs(options: Options, args: ArgsType): ArgsReturnType[] {
       i++
     } else {
       k_v_item.option = <string>args[i]
-      k_v_item.value = DefaultOption[<string>args[i]]
+      k_v_item.value = processDefaultValue(options, <string>args[i])
     }
     k_v_args.push(k_v_item)
   }
