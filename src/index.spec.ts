@@ -34,3 +34,9 @@ test('default value', () => {
     '-p': 9090,
   })
 })
+
+test('non option', () => {
+  const options = {}
+  const args = parseArgs(options, [])
+  expect(args).toEqual({})
+})
