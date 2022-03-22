@@ -32,8 +32,32 @@ test('期望 -d 返回的是 .', () => {
   const options = {
     '-d': String,
   }
-  const args = parseArgs(options, ['-p'])
+  const args = parseArgs(options, ['-d'])
   expect(args).toEqual({
     '-d': '.',
+  })
+})
+
+test('期望 -p 9090 返回的是 9090', () => {
+  const options = {
+    '-p': Number,
+  }
+  const args = parseArgs(options, ['-p', 9090])
+  expect(args).toEqual({
+    '-p': 9090,
+  })
+})
+
+test('happy path', () => {
+  const options = {
+    '-l': Boolean,
+    '-p': Number,
+    '-d': String,
+  }
+  const args = parseArgs(options, ['-l', '-p', 9090, '-d', '/Users/alex/logs'])
+  expect(args).toEqual({
+    '-l': true,
+    '-p': 9090,
+    '-d': '/Users/alex/logs',
   })
 })
