@@ -1,0 +1,23 @@
+{
+  "name": "args",
+  "version": "1.0.0",
+  "description": "缘起：https://github.com/cuixiaorui/args",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexzhang1030/args.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alexzhang1030/args/issues"
+  },
+  "homepage": "https://github.com/alexzhang1030/args#readme",
+  "devDependencies": {
+    "vitest": "^0.7.7"
+  }
+}
