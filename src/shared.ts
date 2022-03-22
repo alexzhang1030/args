@@ -1,6 +1,6 @@
 import { BooleanDefault, NumberDefault, StringDefault } from './default'
 import { isBoolean, isNumber, isString } from './is'
-import type { Options, PrimitiveConstructor } from './types'
+import type { PrimitiveConstructor } from './types'
 
 export function hasOwn(obj: Object, key: string) {
   return Reflect.has(obj, key)
